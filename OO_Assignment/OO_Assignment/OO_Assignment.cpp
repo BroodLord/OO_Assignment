@@ -1,48 +1,47 @@
 // OO_Assignment.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
+#define NULLSTRING "null_string";
 
 #include <iostream>
+template<typename TypeKey, typename TypeValue>
+class KeyValuePair
+{
+public:
+	TypeKey Key;
+	TypeValue Value;
+};
 
-template<class T1, class T2>
+
+template<typename TypeKey, typename KeyValue>
 class MapArray
 {
 private:
 	int ArraySize;
-	int Top = 0;
-	T1* KeyArray;
-	T2* ValueArray;
+	int CurrentSize = 0;
+	KeyValuePair<TypeKey, KeyValue>* KeyValueArray;
 public:
-	MapArray(int Size)
-	{
-		ArraySize = Size;
-		KeyArray = new T1[ArraySize];
-		ValueArray = new T2[ArraySize];
-	}
-	bool IsFull();
+	MapArray(int Size);
 	bool IsEmpty();
-	void Push(T1 Key, T2 Value);
+	void Push(TypeKey Key, KeyValue Value);
 	void Pop();
 	void Clear();
-	//void GetData();
+	bool CompareKey(TypeKey Key);
+	void GetData();
+	int Count();
 
 };
-template<class T1, class T2>
-bool MapArray< T1, T2>::IsFull()
+
+template<typename TypeKey, typename TypeValue>
+MapArray< TypeKey, TypeValue>::MapArray(int Size)
 {
-	if (Top >= ArraySize)
-	{
-		std::cout << "Map is Full of elements" << std::endl;
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	ArraySize = Size;
+	KeyValueArray = new KeyValuePair<TypeKey, TypeValue>[ArraySize];
 }
-template<class T1, class T2>
-bool MapArray<T1, T2>::IsEmpty()
+
+template<typename TypeKey, typename TypeValue>
+bool MapArray<TypeKey, TypeValue>::IsEmpty()
 {
-	if (Top <= 0)
+	if (Count <= 0)
 	{
 		std::cout << "Map is Empty" << std::endl;
 		return true;
@@ -52,49 +51,54 @@ bool MapArray<T1, T2>::IsEmpty()
 		return false;
 	}
 }
-template<class T1, class T2>
-void MapArray<T1, T2>::Push(T1 Key, T2 Value)
+template<typename TypeKey, typename TypeValue>
+void MapArray<TypeKey, TypeValue>::Push(TypeKey Key, TypeValue Value)
 {
-	KeyArray[Top] = Key;
-	ValueArray[Top] = Value;
-	Top++;
+	KeyValueArray[Count].Key = Key;
+	KeyValueArray[Count].Value = Value;
+	Count++;
 
 }
-template<class T1, class T2>
-void MapArray<T1, T2>::Pop()
+template<typename TypeKey, typename TypeValue>
+void MapArray<TypeKey, TypeValue>::Pop()
 {
-	Top--;
-	KeyArray[Top] = NULL;
-	ValueArray[Top] = "";
+	Count--;
+	KeyValueArray[Count].Key = NULL;
+	KeyValueArray[Count].Value = NULLSTRING;
 
 }
-template<class T1, class T2>
-void MapArray<T1, T2>::Clear()
+template<typename TypeKey, typename TypeValue>
+void MapArray<TypeKey, TypeValue>::Clear()
 {
-	for (int i = 0; i <= Top; i++)
+	for (int i = 0; i <= Count; i++)
 	{
 		Pop();
 	}
 
 }
-//template<class T1, class T2>
-//void MapArray<T1,T2>::GetData()
-//{
-//	for (int i = 0; i < ArraySize; i++)
-//	{
-//		std::cout << "Key: " << KeyArray[i] << std::endl;
-//		std::cout << "Value: " << ValueArray[i] << std::endl;
-//	}
-//
-//}
+template<typename TypeKey, typename TypeValue>
+bool MapArray<TypeKey, TypeValue>::CompareKey(TypeKey Key)
+{
+	for (int i = 0; i < Count; i++)
+	{
+		if (KeyValueArray[i].Key == Key)
+		{
+			std::cout << "Key Already In Use" << std::endl;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+}
+template<typename TypeKey, typename TypeValue>
+int MapArray<TypeKey, TypeValue>::Count()
+{
+	return CurrentSize;
+}
 
 int main()
 {
-	MapArray<int, std::string> Map(2);
-	Map.Push(104, "Danny Kavanagh");
-	Map.Push(78, "YES QUEEN");
-	//Map.GetData();
-	Map.Clear();
-	//Map.GetData();
 	return 0;
 }
