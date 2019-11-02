@@ -18,5 +18,19 @@
     <ClCompile Include="OO_Assignment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MapArrayClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MapArrayClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyValuePair.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Consts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
