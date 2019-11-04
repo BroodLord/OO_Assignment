@@ -1,6 +1,5 @@
 #include "MapArrayClass.h"
-#include <iostream>
-#include <typeinfo>
+
 template<typename TypeKey, typename TypeValue>
 MapArray< TypeKey, TypeValue>::MapArray(int Size)
 {
@@ -8,13 +7,17 @@ MapArray< TypeKey, TypeValue>::MapArray(int Size)
 	KeyValueArray = new KeyValuePair<TypeKey, TypeValue>[ArraySize];
 }
 template<typename TypeKey, typename TypeValue>
+MapArray< TypeKey, TypeValue>::~MapArray()
+{
+	delete[] KeyValueArray;
+	std::cout << "MapArray Deleted" << std::endl;
+}
+template<typename TypeKey, typename TypeValue>
 void MapArray< TypeKey, TypeValue>::AddMemeory()
 {
 	ArraySize *= DYNAMIC_ARRAY_MULTIPLIER;
-	if (ArraySize > MAX_SIZE)
+	if(ArraySize > MAX_SIZE)
 	{
-		ArraySize = MAX_SIZE;
-		std::cout << "Array is at Max Size" << std::endl;
 	}
 	else
 	{
@@ -44,31 +47,67 @@ bool MapArray<TypeKey, TypeValue>::IsEmpty()
 	}
 }
 template<typename TypeKey, typename TypeValue>
-void MapArray<TypeKey, TypeValue>::Push(TypeKey Key, TypeValue Value)
+void MapArray<TypeKey, TypeValue>::Sort()
+{
+	int min, i, j;
+	TypeKey temp;
+	for (i = 0; i < CurrentArraySize - 1; i++)
+	{
+		min = i;
+		for (j = i + 1; j < CurrentArraySize; j++)
+		{
+			if (KeyValueArray[j].Key > KeyValueArray[min].Key)
+			{
+				min = j;
+			}
+		}
+		temp = KeyValueArray[i].Key;
+		KeyValueArray[i].Key = KeyValueArray[min].Key;
+		KeyValueArray[i].Value = KeyValueArray[min].Value;
+		KeyValueArray[min].Key = temp;
+	}
+}
+template<typename TypeKey, typename TypeValue>
+void MapArray<TypeKey, TypeValue>::AddKVP(TypeKey Key, TypeValue Value)
 {
 	KeyValueArray[CurrentArraySize].Key = Key;
 	KeyValueArray[CurrentArraySize].Value = Value;
 	CurrentArraySize++;
+	Sort();
 	if (CurrentArraySize == ArraySize)
 	{
 		AddMemeory();
 	}
 }
 template<typename TypeKey, typename TypeValue>
-void MapArray<TypeKey, TypeValue>::Pop()
+void MapArray<TypeKey, TypeValue>::RemoveKVP(TypeKey Key)
 {
 	if (!IsEmpty())
 	{
-		CurrentArraySize--;
+		int SavedIndex = 0;
+		for (int i = 0; i < CurrentArraySize; i++)
+		{
+			if (KeyValueArray[i].Key == Key)
+			{
+				SavedIndex = i;
+				break;
+			}
+		}
 		KeyValuePair<TypeKey, TypeValue>* KVPArray;
 		KVPArray = new KeyValuePair<TypeKey, TypeValue>[ArraySize];
 		for (int i = 0; i < CurrentArraySize; i++)
 		{
-			KVPArray[i].Key = KeyValueArray[i].Key;
-			KVPArray[i].Value = KeyValueArray[i].Value;
+			if (i != SavedIndex)
+			{
+				KVPArray[i].Key = KeyValueArray[i].Key;
+				KVPArray[i].Value = KeyValueArray[i].Value;
+			}
 		}
 		delete[] KeyValueArray;
 		KeyValueArray = KVPArray;
+		Sort();
+		CurrentArraySize--;
+		
 	}
 }
 template<typename TypeKey, typename TypeValue>

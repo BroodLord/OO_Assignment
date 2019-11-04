@@ -8,10 +8,10 @@
 int main()
 {
 	MapArray<int, std::string>* Map = new MapArray<int, std::string>(DEFAULT_SIZE);
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < 100; i++)
 	{
-		Map->Push(i, "D");
+		Map->AddKVP(i, "D");
 	}
-	Map->Pop();
+	Map->RemoveKVP(5);
 	return 0;
 }
