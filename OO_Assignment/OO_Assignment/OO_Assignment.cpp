@@ -5,12 +5,34 @@
 #include "MapArrayClass.h"
 #include "MapArrayClass.cpp"
 
+
+class MyObject
+{
+
+	int ma;
+public:
+	MyObject()
+	{
+
+	}
+	MyObject(int a) : ma(a)
+	{
+
+	}
+	bool operator < (MyObject const& obj)
+	{
+		return ma < obj.ma;
+	}
+};
+
+
 int main()
 {
-	MapArray<int, std::string>* Map = new MapArray<int, std::string>(DEFAULT_SIZE);
-	for (int i = 0; i < 100; i++)
+	MapArray<MyObject, int>* Map = new MapArray<MyObject, int>(DEFAULT_SIZE);
+	for (int i = 0; i < 10; i++)
 	{
-		Map->AddKVP(i, "D");
+		MyObject o1(i);
+		Map->AddKVP(o1, i);
 	}
 	Map->RemoveKVP(5);
 	return 0;

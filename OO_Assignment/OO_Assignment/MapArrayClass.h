@@ -17,6 +17,7 @@ private:
 
 	/* Public functions avaiable to the Map user */
 public:
+	
 	MapArray(int Size); // Constructor to set up the Array with a default size.
 	~MapArray(); // Deconstructor to delete the Array.
 	bool IsEmpty(); // Function that checks to see if the Array is empty.
@@ -24,6 +25,9 @@ public:
 	void RemoveKVP(TypeKey Key); // This will search through the array for and key and remove it from the list.
 	void Clear(); // This will run through each element in the array and reset it.
 	int CurrentSize(); // This will return the amount of elements in the array.
+	bool FindKey(TypeKey Key); // returns if the key already exists.
 	TypeValue GetValue(TypeKey Key); // This will allow the user to search for a value by passing a key,
+
 };
+
 

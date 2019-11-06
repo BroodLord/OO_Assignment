@@ -50,30 +50,46 @@ template<typename TypeKey, typename TypeValue>
 void MapArray<TypeKey, TypeValue>::Sort()
 {
 	int min, i, j;
-	TypeKey temp;
+	TypeKey tempKey;
+	TypeValue tempValue;
 	for (i = 0; i < CurrentArraySize - 1; i++)
 	{
 		min = i;
 		for (j = i + 1; j < CurrentArraySize; j++)
 		{
-			if (KeyValueArray[j].Key > KeyValueArray[min].Key)
+			if (KeyValueArray[min].Key < KeyValueArray[j].Key)
 			{
 				min = j;
 			}
 		}
-		temp = KeyValueArray[i].Key;
+		tempKey = KeyValueArray[i].Key;
+		tempValue = KeyValueArray[i].Value;
 		KeyValueArray[i].Key = KeyValueArray[min].Key;
 		KeyValueArray[i].Value = KeyValueArray[min].Value;
-		KeyValueArray[min].Key = temp;
+		KeyValueArray[min].Key = tempKey;
+		KeyValueArray[min].Value = tempValue;
 	}
 }
 template<typename TypeKey, typename TypeValue>
 void MapArray<TypeKey, TypeValue>::AddKVP(TypeKey Key, TypeValue Value)
 {
-	KeyValueArray[CurrentArraySize].Key = Key;
-	KeyValueArray[CurrentArraySize].Value = Value;
-	CurrentArraySize++;
-	Sort();
+	bool Added = false;
+	for (int i = 0; i < CurrentArraySize; i++)
+	{
+		if (!(KeyValueArray[i].Key < Key) && !(Key < KeyValueArray[i].Key))
+		{
+			KeyValueArray[i].Value = Value;
+			Added = true;
+			break;
+		}
+	}
+	if (!Added)
+	{
+		KeyValueArray[CurrentArraySize].Key = Key;
+		KeyValueArray[CurrentArraySize].Value = Value;
+		CurrentArraySize++;
+		Sort();
+	}
 	if (CurrentArraySize == ArraySize)
 	{
 		AddMemeory();
@@ -87,7 +103,7 @@ void MapArray<TypeKey, TypeValue>::RemoveKVP(TypeKey Key)
 		int SavedIndex = 0;
 		for (int i = 0; i < CurrentArraySize; i++)
 		{
-			if (KeyValueArray[i].Key == Key)
+			if (!(KeyValueArray[i].Key < Key) && !(Key < KeyValueArray[i].Key))
 			{
 				SavedIndex = i;
 				break;
@@ -127,10 +143,22 @@ TypeValue MapArray<TypeKey, TypeValue>::GetValue(TypeKey Key)
 {
 	for (int i = 0; i < CurrentArraySize; i++)
 	{
-		if (KeyValueArray[i].Key == Key)
+		if (!(KeyValueArray[i].Key < Key) && !(Key < KeyValueArray[i].Key))
 		{
 			return KeyValueArray[i].Value;
 			break;
 		}
 	}
+}
+template<typename TypeKey, typename TypeValue>
+bool MapArray<TypeKey, TypeValue>::FindKey(TypeKey Key)
+{
+	for (int i = 0; i < CurrentArraySize; i++)
+	{
+		if (!(KeyValueArray[i].Key < Key) && !(Key < KeyValueArray[i].Key))
+		{
+			return true;
+		}
+	}
+	return false;
 }
