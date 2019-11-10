@@ -1,6 +1,7 @@
 #pragma once
 #include "KeyValuePair.h"
 #include "Consts.h"
+#include <iterator>
 #include <iostream>
 
 /* This is a template class for the interface of the Map Class */
@@ -17,7 +18,9 @@ private:
 
 	/* Public functions avaiable to the Map user */
 public:
-	
+	using Iterator = MyIterator<TypeKey, TypeValue>;
+	MyIterator <TypeKey, TypeValue> Begin(){ return &KeyValueArray[0]; };
+	MyIterator <TypeKey, TypeValue> End() {	return &KeyValueArray[CurrentArraySize]; };
 	MapArray(int Size); // Constructor to set up the Array with a default size.
 	~MapArray(); // Deconstructor to delete the Array.
 	bool IsEmpty(); // Function that checks to see if the Array is empty.
