@@ -103,8 +103,8 @@ void MapArray<TypeKey, TypeValue>::AddKVP(TypeKey Key, TypeValue Value)
 		   and after adding the data it will sort the data. */
 		KeyValueArray[CurrentArraySize].Key = Key;
 		KeyValueArray[CurrentArraySize].Value = Value;
-		Sort();
 		CurrentArraySize++;
+		Sort();
 	}
 	/* Check to see if the top element is equal to the current array size and that the array size isn't equal to the Max Size */
 	if (CurrentArraySize == ArraySize && ArraySize != MAX_SIZE)

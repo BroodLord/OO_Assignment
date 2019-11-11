@@ -2,6 +2,7 @@
 #include "KeyValuePair.h"
 #include "Consts.h"
 #include <iterator>
+#include <ostream>
 #include <iostream>
 
 /* This is a template class for the interface of the Map Class */
