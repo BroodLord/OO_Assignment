@@ -4,6 +4,7 @@
 #include "MapArrayClass.h"
 #include "MapArrayClass.cpp"
 #include <string>
+#include <typeinfo>
 
 
 class MyObject
@@ -29,114 +30,92 @@ public:
 		return os;
 	}
 };
-
-
-void TestCaseInt()
+template<typename T, typename K>
+void TestCase(T Key, K Value)
 {
-	int Test = 420;
-	string Test2 = "Alex";
-	std::cout << "Test Case: Int, String" << std::endl;
-	MapArray<int, std::string>* Map = new MapArray<int, std::string>(DEFAULT_SIZE);
-	std::cout << "Adding " << Test << " and " << Test2 << " to Map" << std::endl;
-	Map->AddKVP(Test, Test2);
-	for (MapArray<int, std::string>::Iterator It = Map->Begin(); It != Map->End(); ++It)
-	{
-		std::cout << "Key: " << It->Key << std::endl;
-		std::cout << "Value: " << It->Value << std::endl;
-	}
-	if (Map->FindKey(Test))
-	{
-		std::cout << "KEY FOUND: " << Test << std::endl;
-	}
-	std::cout << "Getting Value At Key " << Test << " : " << Map->GetValue(Test) << std::endl;
-	std::cout << "Removing element with Key: " << Test << std::endl;
-	Map->RemoveKVP(Test);
-	Map->IsEmpty();
-	std::cout << "Adding Generic Data" << std::endl;
-	for (int i = 0; i < 10; i++)
-	{
-		Map->AddKVP(i, "Da");
-	}
-	std::cout << "Displaying Sorted Map with Iterator" << std::endl;
 	int count = 0;
-	for (MapArray<int, std::string>::Iterator It = Map->Begin(); It != Map->End(); ++It)
+	std::cout << "Test Case: " << typeid(Key).name() << " " << typeid(Value).name() << std::endl;
+	MapArray<T, K>* Map = new MapArray<T, K>(DEFAULT_SIZE);
+	std::cout << "Adding " << Key << " and " << Value << " to Map" << std::endl;
+	Map->AddKVP(Key, Value);
+	std::cout << "Displaying Sorted Map with Iterator" << std::endl;
+	typename MapArray<T, K>::Iterator It;
+	for (It = Map->Begin(); It != Map->End(); ++It)
 	{
-		std::cout << "[" << count << "]" << " Key: " << It->Key << std::endl;
-		std::cout << "[" << count << "]" << " Value: " << It->Value << std::endl;
+		std::cout << "[" << count << "]" << "Key: " << It->Key << std::endl;
+		std::cout << "[" << count << "]" << "Value: " << It->Value << std::endl;
 		count++;
 	}
+	std::cout << "CurrentSize: " << Map->CurrentSize() << std::endl;
+	if (Map->FindKey(Key))
+	{
+		std::cout << "KEY FOUND: " << Key << std::endl;
+	}
+	std::cout << "Getting Value At Key " << Key << " : " << Map->GetValue(Key) << std::endl;
+	std::cout << "Removing element with Key: " << Key << std::endl;
+	Map->RemoveKVP(Key);
+	Map->IsEmpty();
+	count = 0;
 	Map->~MapArray();
 	std::cout << "///////////////////////////////////////////" << std::endl;
-	//float TestF2 = 32.43536f;
-	//std::cout << "Test Case: Int, Float" << std::endl;
-	//MapArray<int, float>* Map2 = new MapArray<int, float>(DEFAULT_SIZE);
-	//std::cout << "Adding " << Test << " and " << TestF2 << " to Map" << std::endl;
-	//Map2->AddKVP(Test, TestF2);
-	//for (MapArray<int, float>::Iterator It = Map2->Begin(); It != Map2->End(); ++It)
-	//{
-	//	std::cout << "Key: " << It->Key << std::endl;
-	//	std::cout << "Value: " << It->Value << std::endl;
-	//}
-	//if (Map->FindKey(Test))
-	//{
-	//	std::cout << "KEY FOUND: " << Test << std::endl;
-	//}
-	//std::cout << "Getting Value At Key " << Test << " : " << Map2->GetValue(Test) << std::endl;
-	//std::cout << "Removing element with Key: " << Test << std::endl;
-	//Map2->RemoveKVP(Test);
-	//Map2->IsEmpty();
-	//std::cout << "Adding Generic Data" << std::endl;
-	//for (int i = 0; i < 10; i++)
-	//{
-	//	Map2->AddKVP(i, 43.4356f);
-	//}
-	//std::cout << "Displaying Sorted Map with Iterator" << std::endl;
-	//count = 0;
-	//for (MapArray<int, float>::Iterator It = Map2->Begin(); It != Map2->End(); ++It)
-	//{
-	//	std::cout << "[" << count << "]" << " Key: " << It->Key << std::endl;
-	//	std::cout << "[" << count << "]" << " Value: " << It->Value << std::endl;
-	//	count++;
-	//}
-	//std::cout << "///////////////////////////////////////////" << std::endl;
-}
-void TestCaseString()
-{
-
-}
-void TestCaseChar()
-{
-
-}
-void TestCaseFloat()
-{
-
-}
-void TestCaseDouble()
-{
-
-}
-void TestCaseUDC()
-{
-
 }
 
 int main()
 {
-	//MapArray<MyObject, std::string>* Map = new MapArray<MyObject, std::string>(DEFAULT_SIZE);
-	//for (int i = 0; i < 11; i++)
-	//{
-	//	MyObject o1(i);
-	//	Map->AddKVP(o1, "Danny");
-	//}
-	//int count = 0;
-	//for(MapArray<MyObject, std::string>::Iterator It = Map->Begin(); It != Map->End(); ++It)
-	//{
-	//	std::cout << "[" << count << "]" << " Key: " << It->Key << std::endl;
-	//	std::cout << "[" << count << "]" << " Value: " << It->Value << std::endl;
-	//	count++;
-	//}
-	TestCaseInt();
+	int TestI = 50;
+	float TestF = 65.654f;
+	std::string TestS = "Test";
+	char TestC = 'T';
+	bool TestB = 0;
+	MyObject TestUDC = 20;
 
+	std::cout << "ALL INT TEST CASES" << std::endl;
+	std::cout << "" << std::endl;
+	TestCase<int, int>(TestI, TestI);
+	TestCase<int, float>(TestI, TestF);
+	TestCase<int, string>(TestI, TestS);
+	TestCase<int, char>(TestI, TestC);
+	TestCase<int, bool>(TestI, TestB);
+	TestCase<int, MyObject>(TestI, TestUDC);
+	std::cout << "ALL FLOAT TEST CASES" << std::endl;
+	std::cout << "" << std::endl;
+	TestCase<float, int>(TestF, TestI);
+	TestCase<float, float>(TestF, TestF);
+	TestCase<float, string>(TestF, TestS);
+	TestCase<float, char>(TestF, TestC);
+	TestCase<float, bool>(TestF, TestB);
+	TestCase<float, MyObject>(TestF, TestUDC);
+	std::cout << "ALL STRING TEST CASES" << std::endl;
+	std::cout << "" << std::endl;
+	TestCase<string, int>(TestS, TestI);
+	TestCase<string, float>(TestS, TestF);
+	TestCase<string, string>(TestS, TestS);
+	TestCase<string, char>(TestS, TestC);
+	TestCase<string, bool>(TestS, TestB);
+	TestCase<string, MyObject>(TestS, TestUDC);
+	std::cout << "ALL CHAR TEST CASES" << std::endl;
+	std::cout << "" << std::endl;
+	TestCase<char, int>(TestC, TestI);
+	TestCase<char, float>(TestC, TestF);
+	TestCase<char, string>(TestC, TestS);
+	TestCase<char, char>(TestC, TestC);
+	TestCase<char, bool>(TestC, TestB);
+	TestCase<char, MyObject>(TestC, TestUDC);
+	std::cout << "ALL BOOL TEST CASES" << std::endl;
+	std::cout << "" << std::endl;
+	TestCase<bool, int>(TestB, TestI);
+	TestCase<bool, float>(TestB, TestF);
+	TestCase<bool, string>(TestB, TestS);
+	TestCase<bool, char>(TestB, TestC);
+	TestCase<bool, bool>(TestB, TestB);
+	TestCase<bool, MyObject>(TestB, TestUDC);
+	std::cout << "ALL USER DEFINED CLASSES TEST CASES" << std::endl;
+	std::cout << "" << std::endl;
+	TestCase<MyObject, int>(TestUDC, TestI);
+	TestCase<MyObject, float>(TestUDC, TestF);
+	TestCase<MyObject, string>(TestUDC, TestS);
+	TestCase<MyObject, char>(TestUDC, TestC);
+	TestCase<MyObject, bool>(TestUDC, TestB);
+	TestCase<MyObject, MyObject>(TestUDC, TestUDC);
 	return 0;
 }
