@@ -155,8 +155,6 @@
     <ClCompile Include="OO_Assignment.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Consts.h" />
-    <ClInclude Include="KeyValuePair.h" />
     <ClInclude Include="MapArrayClass.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
