@@ -57,8 +57,14 @@ void TestInterfaceMethods(T Key[], K Value[])
 	std::cout << "Trying to find Key: " << Key[8] << std::endl;
 	std::cout << "Is the Key already in the Map: " << Map->FindKey(Key[8]) << std::endl;
 	std::cout << "Getting Value At Key " << Key[12] << " : " << Map->GetValue(Key[12]) << std::endl;
-	std::cout << "Removing element with Key: " << Key[17] << std::endl;
+	std::cout << "Removing element with Key: " << Key[2] << std::endl;
 	Map->RemoveKVP(Key[2]);
+	count = 0;
+	for (It = Map->Begin(); It != Map->End(); ++It)
+	{
+		std::cout << "[" << count << "]" << "Key: " << It->Key << " ," << " Value: " << It->Value << std::endl;
+		count++;
+	}
 	std::cout << "CLEARING MAP" << std::endl;
 	Map->Clear();
 	std::cout << "CurrentSize: " << Map->CurrentSize() << std::endl;

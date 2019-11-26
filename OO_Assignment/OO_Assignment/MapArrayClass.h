@@ -43,7 +43,7 @@ private:
 	const int DYNAMIC_ARRAY_MULTIPLIER = 5; // Number that mulitples the new array size.
 	int ArraySize; // Gets track of the ArraySize.
 	int CurrentArraySize = 0; // Keeps track of the amount of elements
-	void AddMemeory(); // Adds memory to the array to support dynamic memory allocation.
+	void AddMemory(); // Adds memory to the array to support dynamic memory allocation.
 	void Sort(); // Sorts the Array.
 	KeyValuePair<TypeKey, TypeValue>* KeyValueArray; // A pointer that is used to point to the Array of KVP.
 

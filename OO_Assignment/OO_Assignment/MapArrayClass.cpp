@@ -16,29 +16,32 @@ MapArray< TypeKey, TypeValue>::~MapArray()
 }
 /* This function is used when we need to give the array more memory */
 template<typename TypeKey, typename TypeValue>
-void MapArray< TypeKey, TypeValue>::AddMemeory()
+void MapArray< TypeKey, TypeValue>::AddMemory()
 {
 	int SavedSized;
 	SavedSized = ArraySize;
 	ArraySize *= DYNAMIC_ARRAY_MULTIPLIER; // This makes the Array Size 5 times better
-	//if (ArraySize > MAX_SIZE)
-	//{
-	//	ArraySize = MAX_SIZE; // Sets the Array to the max Size
-	//	std::cout << "Array can't be incresed anymore due to the Max Size" << std::endl; // Lets the user know about the Array Size
-	//}
-	KeyValuePair<TypeKey, TypeValue>* KVPArray; // Creates a new pointer of KeyValueArray
-	KVPArray = new KeyValuePair<TypeKey, TypeValue>[ArraySize]; // Sets up a new Array of the new size
+	/*TRY CATCH FUNCTION TO TEST MEMEORY ALLOCATION*/
+	try
+	{
+		KeyValuePair<TypeKey, TypeValue>* KVPArray; // Creates a new pointer of KeyValueArray
+		KVPArray = new KeyValuePair<TypeKey, TypeValue>[ArraySize]; // Sets up a new Array of the new size
+
 
 	/* Runs through the old Array and assigns all the data to the new Array */
-	for (int i = 0; i < CurrentArraySize; i++)
-	{
-		KVPArray[i].Key = KeyValueArray[i].Key;
-		KVPArray[i].Value = KeyValueArray[i].Value;
+		for (int i = 0; i < CurrentArraySize; i++)
+		{
+			KVPArray[i].Key = KeyValueArray[i].Key;
+			KVPArray[i].Value = KeyValueArray[i].Value;
+		}
+		delete[] KeyValueArray; // Deletes the old array assign to the pointer
+		KeyValueArray = KVPArray; // makes the old ponter look at the new Array.
 	}
-	std::cout << "OLD ARRAY SIZE: " << SavedSized << std::endl; // Lets the user know about the Array Size
-	std::cout << "NEW ARRAY SIZE: " << ArraySize << std::endl; // Lets the user know about the Array Size
-	delete[] KeyValueArray; // Deletes the old array assign to the pointer
-	KeyValueArray = KVPArray; // makes the old ponter look at the new Array.
+	catch (std::bad_array_new_length &e)
+	{
+		KeyValueArray = NULL;
+		std::cout << "MEMORY CANNOT BE ALLOCATED ANYMORE" << std::endl;
+	}
 
 }
 /* This function will let the user know if the Array is empty */
@@ -94,17 +97,17 @@ void MapArray<TypeKey, TypeValue>::AddKVP(TypeKey Key, TypeValue Value)
 		}
 	}
 	/* check to see if the data hasn't been added */
-	if (!Added && CurrentArraySize != MAX_SIZE)
+	if (!Added && KeyValueArray != NULL)
 	{
 		/* This will add a new Key and Value as a new element to the back of the Map
 		   and after adding the data it will sort the data. */
 		KeyValueArray[CurrentArraySize].Key = Key;
 		KeyValueArray[CurrentArraySize].Value = Value;
-		if (CurrentArraySize != MAX_SIZE) { CurrentArraySize++; }
+		CurrentArraySize++;
 		Sort();
 	}
 	/* Check to see if the top element is equal to the current array size and that the array size isn't equal to the Max Size */
-	if (CurrentArraySize == ArraySize && ArraySize != MAX_SIZE) { AddMemeory(); } // Will run the function to add memory
+	if (CurrentArraySize == ArraySize) { AddMemory(); } // Will run the function to add memory
 }
 /* This function will allow for the removal of an elements in the array */
 template<typename TypeKey, typename TypeValue>
@@ -114,7 +117,7 @@ void MapArray<TypeKey, TypeValue>::RemoveKVP(TypeKey Key)
 	if (!IsEmpty())
 	{
 		int SavedIndex = 0; // Used to store the index of the removed Key
-		bool KeyExsits = false; // Boolean to see if the Key exsists
+		bool KeyExists = false; // Boolean to see if the Key exsists
 		/* Runs through all the elements in the array */
 		for (int i = 0; i < CurrentArraySize; i++)
 		{
@@ -122,12 +125,12 @@ void MapArray<TypeKey, TypeValue>::RemoveKVP(TypeKey Key)
 			if (!(KeyValueArray[i].Key < Key) && !(Key < KeyValueArray[i].Key))
 			{
 				SavedIndex = i; // Saves the current index
-				KeyExsits = true; // Turns true so we know it exsits
+				KeyExists = true; // Turns true so we know it exsits
 				break; // break out
 			}
 		}
 		/* If the Key is in the array */
-		if (KeyExsits)
+		if (KeyExists)
 		{
 			KeyValuePair<TypeKey, TypeValue>* KVPArray; // Create a new pointer of KVP
 			KVPArray = new KeyValuePair<TypeKey, TypeValue>[ArraySize]; // Create a new array of KVP
@@ -136,14 +139,17 @@ void MapArray<TypeKey, TypeValue>::RemoveKVP(TypeKey Key)
 			{
 				/* This will pass over all the elements in the array to the new array
 				   apart from the element at the saved index */
-				if (i != SavedIndex)
+				if (i != SavedIndex && KeyValueArray != NULL)
 				{
 					KVPArray[i].Key = KeyValueArray[i].Key;
 					KVPArray[i].Value = KeyValueArray[i].Value;
 				}
 			}
 			delete[] KeyValueArray; // Delete all the elements in the all array
-			KeyValueArray = KVPArray; // Sets the pointer to look at the new array
+			if (KeyValueArray != NULL)
+			{
+				KeyValueArray = KVPArray; // Sets the pointer to look at the new array
+			}
 			Sort(); // sorts the new array
 			CurrentArraySize--; // Pops the top of array as its no longer an element
 		}
@@ -162,7 +168,14 @@ void MapArray<TypeKey, TypeValue>::Clear()
 	/* This will delete the array and reset it back to current max size, also creates a new array at the correct size*/
 	delete[] KeyValueArray;
 	CurrentArraySize = 0;
-	KeyValueArray = new KeyValuePair<TypeKey, TypeValue>[ArraySize];
+	try
+	{
+		KeyValueArray = new KeyValuePair<TypeKey, TypeValue>[ArraySize];
+	}
+	catch (std::bad_array_new_length & e)
+	{
+		std::cout << "ARRAY HAS NO MEMORY" << std::endl;
+	}
 
 }
 /* This function will just return the current size of the map */
