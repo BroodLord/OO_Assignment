@@ -1,0 +1,74 @@
+﻿  OO_Assignment.cpp
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment.cpp(79,51): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(71,38): warning C4101: 'e': unreferenced local variable
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(51): message : while compiling class template member function 'void MapArray<T,K>::AddMemory(void)'
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(51): message :         with
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(51): message :         [
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(51): message :             T=MyObject,
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(51): message :             K=MyObject
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(51): message :         ]
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(159): message : see reference to function template instantiation 'void MapArray<T,K>::AddMemory(void)' being compiled
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(159): message :         with
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(159): message :         [
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(159): message :             T=MyObject,
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(159): message :             K=MyObject
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(159): message :         ]
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment.cpp(40): message : see reference to class template instantiation 'MapArray<T,K>' being compiled
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment.cpp(40): message :         with
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment.cpp(40): message :         [
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment.cpp(40): message :             T=MyObject,
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment.cpp(40): message :             K=MyObject
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment.cpp(40): message :         ]
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment.cpp(166): message : see reference to function template instantiation 'void TestInterfaceMethods<MyObject,MyObject>(T [],K [])' being compiled
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment.cpp(166): message :         with
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment.cpp(166): message :         [
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment.cpp(166): message :             T=MyObject,
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment.cpp(166): message :             K=MyObject
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment.cpp(166): message :         ]
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<int,int>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<int,float>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<int,char>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<int,bool>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<int,double>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<int,MyObject>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<float,int>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<float,float>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<float,char>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<float,bool>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<float,double>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<float,MyObject>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<char,int>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<char,float>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<char,char>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<char,bool>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<char,double>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<char,MyObject>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<double,int>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<double,float>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<double,char>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<double,bool>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<double,double>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<double,MyObject>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<MyObject,int>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<MyObject,float>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<MyObject,char>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<MyObject,bool>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<MyObject,double>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<MyObject,MyObject>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,int>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,float>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,char>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,bool>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,double>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,MyObject>::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<int,std::basic_string<char,std::char_traits<char>,std::allocator<char> > >::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<float,std::basic_string<char,std::char_traits<char>,std::allocator<char> > >::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<char,std::basic_string<char,std::char_traits<char>,std::allocator<char> > >::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,std::basic_string<char,std::char_traits<char>,std::allocator<char> > >::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<double,std::basic_string<char,std::char_traits<char>,std::allocator<char> > >::GetValue': not all control paths return a value
+D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\MapArrayClass.h(236): warning C4715: 'MapArray<MyObject,std::basic_string<char,std::char_traits<char>,std::allocator<char> > >::GetValue': not all control paths return a value
+  All 1059 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  OO_Assignment.vcxproj -> D:\Users\DKavanagh2\Documents\GitHub\OO_Assignment\OO_Assignment\OO_Assignment\OO_Assignment\Release\OO_Assignment.exe

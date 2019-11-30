@@ -151,7 +151,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MapArrayClass.cpp" />
     <ClCompile Include="OO_Assignment.cpp" />
   </ItemGroup>
   <ItemGroup>
