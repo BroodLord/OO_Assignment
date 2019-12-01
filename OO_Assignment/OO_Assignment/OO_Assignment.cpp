@@ -62,39 +62,39 @@ void TestInterfaceMethods(T Key[], K Value[])
 	std::cout << "Adding elements to the Map" << std::endl;
 	for (int i = 0; i < 26; i++)
 	{
-		Map->AddKVP(Key[i], Value[i]);
+		Map->mAddKVP(Key[i], Value[i]);
 	}
-	std::cout << "Is The Map Empty: " << Map->IsEmpty() << std::endl;
+	std::cout << "Is The Map Empty: " << Map->mIsEmpty() << std::endl;
 	std::cout << "Displaying Sorted Map with Iterator" << std::endl;
 	typename MapArray<T, K>::Iterator It;
-	for (It = Map->Begin(); It != Map->End(); ++It)
+	for (It = Map->mBegin(); It != Map->mEnd(); ++It)
 	{
 		std::cout << "[" << count << "]" << "Key: " << It->Key << " ," << " Value: " << It->Value << std::endl;
 		count++;
 	}
-	std::cout << "CurrentSize: " << Map->CurrentSize() << std::endl;
+	std::cout << "CurrentSize: " << Map->mCurrentSize() << std::endl;
 	std::cout << "Trying to find Key: " << Key[18] << std::endl;
-	std::cout << "Is the Key already in the Map: " << Map->FindKey(Key[18]) << std::endl;
-	std::cout << "Getting Value At Key " << Key[12] << " : " << Map->GetValue(Key[12]) << std::endl;
+	std::cout << "Is the Key already in the Map: " << Map->mFindKey(Key[18]) << std::endl;
+	std::cout << "Getting Value At Key " << Key[12] << " : " << Map->mGetValue(Key[12]) << std::endl;
 	std::cout << "Removing element with Key: " << Key[12] << std::endl;
-	Map->RemoveKVP(Key[12]);
+	Map->mRemoveKVP(Key[12]);
 	count = 0;
-	for (It = Map->Begin(); It != Map->End(); ++It)
+	for (It = Map->mBegin(); It != Map->mEnd(); ++It)
 	{
 		std::cout << "[" << count << "]" << "Key: " << It->Key << " ," << " Value: " << It->Value << std::endl;
 		count++;
 	}
 	std::cout << "Clearing Map" << std::endl;
-	Map->Clear();
-	std::cout << "Is The Map Empty: " << Map->IsEmpty() << std::endl;
-	std::cout << "CurrentSize: " << Map->CurrentSize() << std::endl;
+	Map->mClear();
+	std::cout << "Is The Map Empty: " << Map->mIsEmpty() << std::endl;
+	std::cout << "CurrentSize: " << Map->mCurrentSize() << std::endl;
 	count = 0;
 	std::cout << "Adding New Data to Map: " << std::endl;
 	for (int i = 0; i < 26; i++)
 	{
-		Map->AddKVP(Key[i], Value[i]);
+		Map->mAddKVP(Key[i], Value[i]);
 	}
-	std::cout << "CurrentSize: " << Map->CurrentSize() << std::endl;
+	std::cout << "CurrentSize: " << Map->mCurrentSize() << std::endl;
 	std::cout << "Clearing Map" << std::endl;
 	delete (Map);
 	Map = NULL;

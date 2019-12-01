@@ -26,11 +26,12 @@ private:
 	public:
 		MyIterator() {} // Default constructor
 		MyIterator(KeyValuePair<TypeKey, TypeValue>* Ptr) : MyIteratorPtr(Ptr) {}
-		KeyValuePair<TypeKey, TypeValue>* operator->() { return MyIteratorPtr; } // Reutns either of the Key or Value
+		/*Overrides the -> operator so it can return a KeyValuePair operator*/
+		KeyValuePair<TypeKey, TypeValue>* operator->() { return MyIteratorPtr; } // Returns either of the Key or Value
 		/*Override function to see if the iterator is equal to a ptr*/
-		bool operator ==(const MyIterator<TypeKey, TypeValue>& KVP) { return (MyIteratorPtr == KVP.MyIteratorPtr); }
+		bool operator ==(const MyIterator<TypeKey, TypeValue>& MyIterator) { return (MyIteratorPtr == MyIterator.MyIteratorPtr); }
 		/*Override function to see if the iterator isn't equal to a ptr*/
-		bool operator !=(const MyIterator<TypeKey, TypeValue>& KVP) { return !(MyIteratorPtr == KVP.MyIteratorPtr); }
+		bool operator !=(const MyIterator<TypeKey, TypeValue>& MyIterator) { return !(MyIteratorPtr == MyIterator.MyIteratorPtr); }
 		/* These override function will increment and decrement where to point to in the map */
 		MyIterator<TypeKey, TypeValue>& operator ++() { MyIteratorPtr++; return *this; }
 		MyIterator<TypeKey, TypeValue>& operator --() { MyIteratorPtr--; return *this; }
@@ -40,17 +41,17 @@ private:
 	};
 	const int DEFAULT_SIZE = 20; // Default starting size.
 	const int DYNAMIC_ARRAY_MULTIPLIER = 5; // Number that mulitples the new array size.
+	/* CLASS ERROR MESSAGES */
 	const std::string MEMORY_MESSAGE = "MEMORY CANNOT BE ALLOCATED ANYMORE";
 	const std::string MAP_CREATED_MESSAGE = "MAP HAS BEEN CREATED";
 	const std::string MAP_DELETED_MESSAGE = "MAP HAS BEEN DELETED";
 	const std::string KEY_NOT_FOUND_MESSAGE = "KEY HASN'T BEEN FOUND";
+
 	int ArraySize; // Gets track of the ArraySize.
 	int CurrentArraySize = 0; // Keeps track of the amount of elements
 	/* This function is used when we need to give the array more memory */
 	void AddMemory()
 	{
-		//int SavedSized;
-		//SavedSized = ArraySize;
 		ArraySize *= DYNAMIC_ARRAY_MULTIPLIER; // This makes the Array Size 5 times better
 		/*TRY CATCH FUNCTION TO TEST MEMEORY ALLOCATION*/
 		try
@@ -68,17 +69,17 @@ private:
 			delete[] KeyValueArray; // Deletes the old array assign to the pointer
 			KeyValueArray = KVPArray; // makes the old ponter look at the new Array.
 		}
-		catch (std::bad_array_new_length & e)
+		catch (std::bad_array_new_length & Expection)
 		{
 			KeyValueArray = NULL;
-			std::cout << MEMORY_MESSAGE << std::endl;
+			std::cout << Expection.what() << std::endl;
 		}
 
 	}
 	/* This function is a linear sort to sort all the elements it the array*/
 	void Sort()
 	{
-		if (!IsEmpty())
+		if (!mIsEmpty())
 		{
 			int min, i, j; // Variables so I can keep track of indexs to change
 			TypeKey tempKey; // Temp variable to sort the Key
@@ -109,9 +110,10 @@ private:
 	/* Public functions avaiable to the Map user */
 public:
 	using Iterator = MyIterator<TypeKey, TypeValue>;
-	MyIterator <TypeKey, TypeValue> Begin() { return &KeyValueArray[0]; };
-	MyIterator <TypeKey, TypeValue> End() { return &KeyValueArray[CurrentArraySize]; };
 
+	/* These are used to point towards the start and end of the map array */
+	MyIterator <TypeKey, TypeValue> mBegin() { return &KeyValueArray[0]; };
+	MyIterator <TypeKey, TypeValue> mEnd() { return &KeyValueArray[CurrentArraySize]; };
 	/* This function will set up the Map when it is created */
 	MapArray()
 	{
@@ -126,47 +128,50 @@ public:
 		std::cout << MAP_DELETED_MESSAGE << std::endl;
 	}
 	/* This function will let the user know if the Array is empty */
-	bool IsEmpty()
+	bool mIsEmpty()
 	{
 		/* If the Top of the Array is equal or less then 0 then its true, else it false */
 		if (CurrentArraySize <= 0) { return true; }
 		else { return false; }
 	}
 	/* This function will allow data to be add to the map class */
-	void AddKVP(TypeKey Key, TypeValue Value)
+	void mAddKVP(TypeKey Key, TypeValue Value)
 	{
 		bool Added = false; // Boolean to see if the data has already been added
 		/* Runs through all the elements in the array */
-		for (int i = 0; i < CurrentArraySize; i++)
+		if (KeyValueArray != NULL)
 		{
-			/* This checks to see if the Key already exsists */
-			if (!(KeyValueArray[i].Key < Key) && !(Key < KeyValueArray[i].Key))
+			for (int i = 0; i < CurrentArraySize; i++)
 			{
-				/* This will add the new value to the key and set the added bool to true */
-				KeyValueArray[i].Value = Value;
-				Added = true;
-				break;
+				/* This checks to see if the Key already exsists */
+				if (!(KeyValueArray[i].Key < Key) && !(Key < KeyValueArray[i].Key))
+				{
+					/* This will add the new value to the key and set the added bool to true */
+					KeyValueArray[i].Value = Value;
+					Added = true;
+					break;
+				}
 			}
-		}
-		/* check to see if the data hasn't been added */
-		if (!Added && KeyValueArray != NULL)
-		{
-			/* This will add a new Key and Value as a new element to the back of the Map
-			   and after adding the data it will sort the data. */
-			KeyValueArray[CurrentArraySize].Key = Key;
-			KeyValueArray[CurrentArraySize].Value = Value;
+			/* check to see if the data hasn't been added */
+			if (!Added && KeyValueArray != NULL)
+			{
+				/* This will add a new Key and Value as a new element to the back of the Map
+				   and after adding the data it will sort the data. */
+				KeyValueArray[CurrentArraySize].Key = Key;
+				KeyValueArray[CurrentArraySize].Value = Value;
 
-			CurrentArraySize++;
-			Sort();
+				CurrentArraySize++;
+				Sort();
+			}
+			/* Check to see if the top element is equal to the current array size and that the array size isn't equal to the Max Size */
+			if (CurrentArraySize == ArraySize) { AddMemory(); } // Will run the function to add memory
 		}
-		/* Check to see if the top element is equal to the current array size and that the array size isn't equal to the Max Size */
-		if (CurrentArraySize == ArraySize) { AddMemory(); } // Will run the function to add memory
 	}
 	/* This function will allow for the removal of an elements in the array */
-	void RemoveKVP(TypeKey Key)
+	void mRemoveKVP(TypeKey Key)
 	{
 		/* Checks to see if the Array is empty */
-		if (!IsEmpty())
+		if (!mIsEmpty())
 		{
 			int SavedIndex = 0; // Used to store the index of the removed Key
 			bool KeyExists = false; // Boolean to see if the Key exsists
@@ -213,7 +218,7 @@ public:
 		}
 	}
 	/* This function is used to reset the array */
-	void Clear()
+	void mClear()
 	{
 		/* This will delete the array and reset it back to current max size, also creates a new array at the correct size*/
 		delete[] KeyValueArray;
@@ -221,12 +226,12 @@ public:
 		CurrentArraySize = 0;
 	}
 	/* This function will just return the current size of the map */
-	int CurrentSize()
+	int mCurrentSize()
 	{
 		return CurrentArraySize;
 	}
 	/* This function will return the Value asscoited to a Key */
-	TypeValue GetValue(TypeKey Key)
+	TypeValue mGetValue(TypeKey Key)
 	{
 		bool KeyInMap = false;
 		/* Runs through all the Keys to see if the passed Key is equal to any in the map */
@@ -245,10 +250,9 @@ public:
 			/* Tells the user that the key doesn't exisit in the map */
 			std::cout << KEY_NOT_FOUND_MESSAGE << std::endl;
 		}
-		return NULL;
 	}
 	/*This function will return true or false depending if the key alredy exsists*/
-	bool FindKey(TypeKey Key)
+	bool mFindKey(TypeKey Key)
 	{
 		bool KeyInMap = false;
 		/*Runs through all the current Keys in the map*/
